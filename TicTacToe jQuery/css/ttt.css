@@ -1,0 +1,41 @@
+.ttt * {
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+.board {
+  width: 300px;
+  height: 300px;
+}
+
+
+.cell {
+  list-style: none;
+  box-sizing: border-box;
+  border: 8px solid black;
+  width: 100px;
+  height: 100px;
+  float: left;
+  background-color: gray;
+}
+
+.cell:not(.clicked .winner .loser):hover {
+  background-color: yellow;
+}
+
+.clicked {
+  background-color: white;
+}
+
+.winner {
+  background-color: green;
+  text-color: white;
+}
+
+.loser {
+  background-color: white;
+  text-color: red;
+}
