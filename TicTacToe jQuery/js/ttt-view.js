@@ -1,22 +1,16 @@
 class View {
   constructor(game, $el) {
     this.game = game;
-    let board = this.setupBoard();
-    $el.append(board)
+    this.$el = $el;
+    this.setupBoard();
     this.bindEvents();
   }
 
   bindEvents() {
-    var that = this;
-    $(".cell").each(function(index) {
-      $(this).on("click", e => {
-        var $cell = $(e.currentTarget);
-        that.makeMove($cell);
-        if (that.game.isOver()) {
-          that.drawWinningBoard(that.game.board.winner());
-        };
-      });
-    })
+    this.$el.on("click", "li", event => {
+      const $cell = $(event.currentTarget);
+      this.makeMove($cell);
+    });
   }
 
   drawWinningBoard(winner) {
@@ -39,29 +33,63 @@ class View {
   }
 
   makeMove($cell) {
+    const currentPlayer = this.game.currentPlayer;
+    const pos = $cell.data("pos");
+
     try {
-      var currentPlayer = this.game.currentPlayer;
-      this.game.playMove($cell.data("pos"));
+      this.game.playMove(pos);
       $cell.text(currentPlayer);
       $cell.addClass("clicked");
     }
     catch(err) {
       alert(err.msg);
+      return
     }
   }
 
-  setupBoard() {
-    var $board = $("<ul class='board'></ul>");
-    for (var i = 0; i < 3; i++) {
-      for (var j = 0; j < 3; j++) {
-        var $cell = $("<li class='cell'></li>");
-        $cell.data("pos", [i,j]);
-        $board.append($cell);
+  makeMove($square) {
+      const pos = $square.data("pos");
+      const currentPlayer = this.game.currentPlayer;
+
+      try {
+        this.game.playMove(pos);
+      } catch (e) {
+        alert("Invalid move! Try again.");
+        return;
+      }
+
+      $square.addClass(currentPlayer);
+
+      if (this.game.isOver()) {
+        // cleanup click handlers.
+        this.$el.off("click");
+        this.$el.addClass("game-over");
+
+        const winner = this.game.winner();
+        const $figcaption = $("<figcaption>");
+
+        if (winner) {
+          this.$el.addClass(`winner-${winner}`);
+          $figcaption.html(`You win, ${winner}!`);
+        } else {
+          $figcaption.html("It's a draw!");
+        }
+
+        this.$el.append($figcaption);
       }
     }
 
-    return $board;
+  setupBoard() {
+    var $ul = $("<ul>");
+    for (var rowIdx = 0; rowIdx < 3; rowIdx++) {
+      for (var colIdx = 0; colIdx < 3; colIdx++) {
+        var $li = $("<li>");
+        $li.data("pos", [rowIdx,colIdx]);
+        $ul.append($li);
+      }
+    }
 
+    this.$el.append($ul)
   }
 }
 
