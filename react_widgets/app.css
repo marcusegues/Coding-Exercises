@@ -1,0 +1,45 @@
+h1{
+  font-size: 28px;
+  font-weight: 700;
+  margin: 20px 10px 10px 20px;
+}
+
+.active {
+  font-weight: bold;
+}
+
+#tab-header {
+  width: 200px;
+  height: 30px;
+  margin: 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#tab-header span {
+  font-size: 14px;
+}
+
+.tab-content{
+  height: 192px;
+  margin: 0 20px;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabs{
+  width: 240px;
+  height: 200px;
+}
+
+.clock {
+  width: 196px;
+  border: 2px solid black;
+  margin: 0 20px;
+}
+
+.clock p {
+  padding: 5px;
+}
