@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     input.value = "";
   };
 
-  let form = document.getElementById("favorite-places");
+  let form = document.querySelector("#favorite-places");
   form.addEventListener("submit", processInput);
 
 
