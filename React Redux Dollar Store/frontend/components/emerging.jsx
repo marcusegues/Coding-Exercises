@@ -1,17 +1,16 @@
 import React from 'react';
 import Currency from './currency';
-import { selectCurrency } from './../actions.js';
+import { selectEMCurrency } from '../actions.js';
 
-class Widget extends React.Component {
-
+class Emerging extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.forceUpdate = this.forceUpdate.bind(this);
-
-    // require this component to re-render whenever the store's state changes
     this.props.store.subscribe(this.forceUpdate);
-    this.currencies = ["USD", "EUR", "CAD", "JPY", "GBP", "AUD"];
-    this.selectCurrency = selectCurrency.bind(this);
+
+    this.em_currencies = ['CNY', 'BRL', 'HUF', 'MXN', 'RUB', 'MYR', 'SEK', 'TRY', 'ZAR'];
+
+    this.selectEMCurrency = selectEMCurrency.bind(this);
   }
 
   fetchRates(currency) {
@@ -25,26 +24,22 @@ class Widget extends React.Component {
         // use the action creator 'selectCurrency' to build the object to
         // be dispatched
         this.props.store.dispatch(
-          this.selectCurrency(resp.base, resp.rates)
+          this.selectEMCurrency(resp.base, resp.rates)
         );
       }.bind(this)
     });
   }
 
   render() {
+    const { rates, baseCurrency } = this.props.store.getState().em;
 
-    // get the store's current state and deconstruct it into 'rates'
-    // and 'baseCurrency' variables
-    const { rates, baseCurrency } = this.props.store.getState().general;
-
-    const currencyOptions = this.currencies.map( (currency) => (
-        <div onClick={ () => { this.fetchRates(currency) } }
-             key={currency}
-             className="currency-option">
-          {currency}
-        </div>
-      )
-    );
+    const currencyOptions = this.em_currencies.map((currency, idx) => (
+      <div key={idx}
+           onClick={ () => { this.fetchRates(currency) } }
+           className="currency-option">
+        {currency}
+      </div>
+    ));
 
     const currencyNames = Object.keys(rates);
     const currencyRates = currencyNames.map( (currency) => (
@@ -56,9 +51,8 @@ class Widget extends React.Component {
 
     return (
       <div className="currency-box">
-        <h1>Developed Markets</h1>
+        <h1>{`Emerging Markets`}</h1>
         <h3>Base Currency: {baseCurrency}</h3>
-
         <div className="currency-selector">
           Get Rates:
           {currencyOptions}
@@ -67,9 +61,8 @@ class Widget extends React.Component {
           {currencyRates}
         </div>
       </div>
-    );
+    )
   }
-};
+}
 
-
-export default Widget;
+export default Emerging;

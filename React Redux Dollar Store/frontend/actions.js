@@ -4,4 +4,10 @@ const selectCurrency = (baseCurrency, rates) => ({
   rates: rates
 });
 
-export default selectCurrency;
+const selectEMCurrency = (baseCurrency, rates) => ({
+  type: "SWITCH_EM_CURRENCY",
+  baseCurrency: baseCurrency,
+  rates: rates
+});
+
+export { selectCurrency, selectEMCurrency };
