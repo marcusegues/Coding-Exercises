@@ -3,12 +3,12 @@ import { NOTE_NAMES } from './../util/tones';
 
 const validKeys = ["c", "d", "e", "f", "g"];
 
-const keyMap = {}
+const keyMap = {};
 validKeys.forEach((key, idx) => {
   keyMap[key] = NOTE_NAMES[idx];
-})
+});
 
-const notes_reducer = (state = [], action) => {
+const notesReducer = (state = [], action) => {
   const note = keyMap[action.key];
   const idx = state.indexOf(note);
 
@@ -28,4 +28,4 @@ const notes_reducer = (state = [], action) => {
   }
 };
 
-export default notes_reducer;
+export default notesReducer;
