@@ -4,6 +4,7 @@ import merge from 'lodash/merge';
 let currTrackId = 0;
 
 export const tracksReducer = (state = {}, action) => {
+  let currTrack = state[currTrackId];
   switch(action.type) {
     case TRACK_CONSTANTS.START_RECORDING:
       currTrackId += 1;
@@ -15,7 +16,6 @@ export const tracksReducer = (state = {}, action) => {
       };
       return merge({}, state, {currTrackId: newTrack});
     case TRACK_CONSTANTS.STOP_RECORDING:
-      let currTrack = state[currTrackId];
       return merge(
         {},
         currTrack,
@@ -25,7 +25,6 @@ export const tracksReducer = (state = {}, action) => {
         }
       );
     case TRACK_CONSTANTS.ADD_NOTES:
-      let currTrack = state[currTrackId];
       return merge(
         {},
         currTrack,
