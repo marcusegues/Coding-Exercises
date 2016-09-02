@@ -6,12 +6,11 @@ class Recorder extends React.Component {
   }
 
   render() {
-    const { isRecording, tracks, startRecording, stopRecording } = this.props;
-    debugger;
+    const { isRecording, isPlaying, tracks, startRecording, stopRecording } = this.props;
     return (
       <div>
-        <button onClick={startRecording} disabled={isRecording}>Start</button>
-        <button onClick={stopRecording} disabled={!isRecording}>Stop</button>
+        <button onClick={startRecording} disabled={isRecording || isPlaying}>Start</button>
+        <button onClick={stopRecording} disabled={!isRecording || isPlaying}>Stop</button>
       </div>
     )
   }

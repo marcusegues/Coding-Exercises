@@ -1,8 +1,13 @@
+import Track from './track';
+import React from 'react';
 
-const Jukebox = () => {
-  const { tracks, isRecording, isPlaying } = this.props
-  const trackList = tracks.map((track, idx) => {
-    return <Track track={track} />;
+const Jukebox = ({ tracks, isRecording, isPlaying, onPlay }) => {
+
+  let trackList = Object.keys(tracks).map(id => {
+    return <Track key={id}
+                  track={tracks[id]}
+                  onPlay={onPlay(tracks[id])}
+                  disabled = {isRecording || isPlaying} />;
   });
 
   return (
