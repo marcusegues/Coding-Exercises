@@ -4,7 +4,6 @@ import merge from 'lodash/merge';
 let currTrackId = 0;
 
 const tracksReducer = (state = {}, action) => {
-  debugger;
   let currTrack = state[currTrackId];
   switch(action.type) {
     case TRACK_CONSTANTS.START_RECORDING:

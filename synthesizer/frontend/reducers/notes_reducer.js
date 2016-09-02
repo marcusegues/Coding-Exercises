@@ -1,4 +1,4 @@
-import { NotesConstants } from './../actions/note_actions';
+import { NOTES_CONSTANTS } from './../actions/note_actions';
 import { NOTE_NAMES } from './../util/tones';
 
 const validKeys = ["c", "d", "e", "f", "g"];
@@ -13,16 +13,18 @@ const notesReducer = (state = [], action) => {
   const idx = state.indexOf(note);
   debugger;
   switch(action.type) {
-    case NotesConstants.KEY_PRESSED:
+    case NOTES_CONSTANTS.KEY_PRESSED:
       if (note && idx === -1) {
         return [...state, note];
       }
       return state;
-    case NotesConstants.KEY_RELEASED:
+    case NOTES_CONSTANTS.KEY_RELEASED:
       if (note && idx !== -1) {
         return [...state.slice(0, idx), ...state.slice(idx+1)];
       }
       return state;
+    case NOTES_CONSTANTS.GROUP_UPDATE:
+      return [...action.notes];
     default:
       return state;
   }
