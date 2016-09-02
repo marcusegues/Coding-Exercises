@@ -18,11 +18,19 @@ export default class Synth extends React.Component {
   }
 
   onKeyDown(e) {
-    this.props.keyPressed(e.key);
+    const { keyPressed, addNotes } = this.props;
+    keyPressed(e.key);
+    if (this.props.isRecording) {
+      addNotes(this.props.notes);
+    }
   }
 
   onKeyUp(e) {
-    this.props.keyReleased(e.key);
+    const { keyReleased, addNotes } = this.props;
+    keyReleased(e.key);
+    if (this.props.isRecording) {
+      addNotes(this.props.notes);
+    }
   }
 
   playNotes() {
@@ -39,7 +47,7 @@ export default class Synth extends React.Component {
   render() {
     this.playNotes();
     const notes = NOTE_NAMES.map((note, idx) => {
-      return <NoteKey key={idx} note={note} />
+      return <NoteKey key={idx} note={note} />;
     });
     return (
       <ul>
@@ -47,4 +55,4 @@ export default class Synth extends React.Component {
       </ul>
     );
   }
-};
+}

@@ -1,12 +1,15 @@
-import TRACK_CONSTANTS from './../actions/track_actions';
+import { TRACK_CONSTANTS } from './../actions/track_actions';
 
-export const recordingReducer = (state = false, action) => {
+const recordingReducer = (state = false, action) => {
+  debugger;
   switch(action.type) {
     case TRACK_CONSTANTS.START_RECORDING:
-      return {isRecording: true};
+      return true;
     case TRACK_CONSTANTS.STOP_RECORDING:
-    return {isRecording: false};
+      return false;
     default:
       return state;
   }
 };
+
+export default recordingReducer;

@@ -1,9 +1,10 @@
-import TRACK_CONSTANTS from './../actions/track_actions';
+import { TRACK_CONSTANTS } from './../actions/track_actions';
 import merge from 'lodash/merge';
 
 let currTrackId = 0;
 
-export const tracksReducer = (state = {}, action) => {
+const tracksReducer = (state = {}, action) => {
+  debugger;
   let currTrack = state[currTrackId];
   switch(action.type) {
     case TRACK_CONSTANTS.START_RECORDING:
@@ -12,11 +13,11 @@ export const tracksReducer = (state = {}, action) => {
         id: currTrackId,
         name: `Track ${currTrackId}`,
         roll: [],
-        timeStart: action.timeStart
+        timeStart: action.timeNow
       };
-      return merge({}, state, {currTrackId: newTrack});
+      return merge({}, state, {[currTrackId]: newTrack});
     case TRACK_CONSTANTS.STOP_RECORDING:
-      return merge(
+      const finalTrack = merge(
         {},
         currTrack,
         {
@@ -24,8 +25,9 @@ export const tracksReducer = (state = {}, action) => {
             { notes: [], timeSlice: action.timeNow - currTrack.timeStart }]
         }
       );
+      return merge({}, state, {[currTrackId]: finalTrack});
     case TRACK_CONSTANTS.ADD_NOTES:
-      return merge(
+      const updatedTrack = merge(
         {},
         currTrack,
         {
@@ -33,7 +35,10 @@ export const tracksReducer = (state = {}, action) => {
             {notes: action.notes, timeSlice: action.timeNow - currTrack.timeStart}]
         }
       );
+      return merge({}, state, {[currTrackId]: updatedTrack});
     default:
       return state;
   }
 };
+
+export default tracksReducer;

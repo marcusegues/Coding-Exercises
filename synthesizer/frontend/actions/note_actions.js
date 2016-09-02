@@ -6,9 +6,9 @@ export const NotesConstants = {
 export const keyPressed = key => ({
   type: NotesConstants.KEY_PRESSED,
   key: key
-})
+});
 
 export const keyReleased = key => ({
   type: NotesConstants.KEY_RELEASED,
   key: key
-})
+});

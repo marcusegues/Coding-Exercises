@@ -11,7 +11,7 @@ validKeys.forEach((key, idx) => {
 const notesReducer = (state = [], action) => {
   const note = keyMap[action.key];
   const idx = state.indexOf(note);
-
+  debugger;
   switch(action.type) {
     case NotesConstants.KEY_PRESSED:
       if (note && idx === -1) {

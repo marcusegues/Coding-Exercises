@@ -8,8 +8,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  startRecording: () => dispatch(start_recording()),
-  stopRecording: () => dispatch(stop_recording())
+  startRecording: () => dispatch(startRecording()),
+  stopRecording: () => dispatch(stopRecording())
 });
 
 export default connect(
