@@ -12,3 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let contentEl = document.getElementById("content");
   ReactDOM.render(<Root store={store}/>, contentEl)
 });
+
+window.store = store;
+window.requestTodos = requestTodos;
