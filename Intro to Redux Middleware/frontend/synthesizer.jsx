@@ -16,7 +16,7 @@ const addLoggingToDispatch = (store) => (next) => (action) => {
 
 const addMoreLoggingToDispatch = (store) => (next) => (action) => {
   const dispatch = store.dispatch;
-  console.log("Fuck");
+  console.log("Middleware");
   let rv = next(action);
   return rv;
 }
