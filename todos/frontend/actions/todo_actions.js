@@ -4,9 +4,9 @@ export const TODO_CONSTANTS = {
 }
 
 export const requestTodos = () => ({
-  type: TUDO_CONSTANTS.REQUEST_TODOS
+  type: TODO_CONSTANTS.REQUEST_TODOS
 });
 
 export const receiveTodos = () => ({
-  type: TUDO_CONSTANTS.RECEIVE_TODOS
+  type: TODO_CONSTANTS.RECEIVE_TODOS
 });
