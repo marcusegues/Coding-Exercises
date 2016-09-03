@@ -7,6 +7,7 @@ export const requestTodos = () => ({
   type: TODO_CONSTANTS.REQUEST_TODOS
 });
 
-export const receiveTodos = () => ({
-  type: TODO_CONSTANTS.RECEIVE_TODOS
+export const receiveTodos = (todos) => ({
+  type: TODO_CONSTANTS.RECEIVE_TODOS,
+  todos: todos
 });
