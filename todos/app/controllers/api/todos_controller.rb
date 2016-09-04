@@ -8,17 +8,14 @@ class Api::TodosController < ApplicationController
     if newTodo.save
       render json: newTodo
     else
-      render json: newTodo.errors.full_messages, status: 400
+      render json: newTodo.errors.full_messages, status: 422
     end
   end
 
   def update
-    todo = Todo.find_by(todos_params)
-    if todo && todo.update
-      render json: todo, status: 200
-    else
-      render json: todo.errors.full_messages, status: 500
-    end
+    @todo = Todo.find(params[:id])
+    @todo.update(todos_params)
+    render json: @todo
   end
 
   def destroy

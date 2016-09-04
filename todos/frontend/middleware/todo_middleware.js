@@ -12,7 +12,9 @@ export const TodoMiddleware = store => next => action => {
       createTodo(action.todo, todoSuccess);
       break;
     case TODO_CONSTANTS.UPDATE_TODO:
-      const updateSuccess = (todo) => store.dispatch(receiveTodo(todo));
+      const updateSuccess = (todo) => {
+        store.dispatch(receiveTodo(todo));
+      }
       updateTodo(action.todo, updateSuccess);
       break;
     case TODO_CONSTANTS.DESTROY_TODO:

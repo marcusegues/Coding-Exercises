@@ -4,9 +4,12 @@ import merge from 'lodash/merge';
 const TodosReducer = (state = {}, action) => {
   switch(action.type) {
     case TODO_CONSTANTS.RECEIVE_TODOS:
-      return action.todos
+      const newState = {};
+      action.todos.forEach((todo) => newState[todo.id] = todo);
+      return newState;
     case TODO_CONSTANTS.RECEIVE_TODO:
-      return merge({}, state, {[action.todo.id]: action.todo})
+      const newTodo = merge({}, state, {[action.todo.id]: action.todo})
+      return newTodo;
     case TODO_CONSTANTS.REMOVE_TODO:
       return delete Object.assign({}, state)[action.todo.id]
     default:

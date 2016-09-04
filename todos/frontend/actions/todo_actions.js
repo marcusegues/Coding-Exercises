@@ -29,10 +29,11 @@ export const receiveTodo = (todo) => ({
   todo: todo
 });
 
-export const toggleTodo = (todo) => ({
+export const toggleTodo = (todo) => {
+  return {
   type: TODO_CONSTANTS.UPDATE_TODO,
   todo: Object.assign({}, todo, { done: !todo.done })
-});
+}};
 
 // action to destroy todo on the backend
 export const destroyTodo = (todo) => ({

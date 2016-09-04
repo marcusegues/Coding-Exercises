@@ -21,6 +21,7 @@ export const updateTodo = (todo, success, error) => {
   $.ajax({
     method: 'PUT',
     url: `api/todos/${todo.id}`,
+    data: {todo},
     success,
     error
   });
