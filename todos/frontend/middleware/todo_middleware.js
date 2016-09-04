@@ -9,7 +9,16 @@ export const TodoMiddleware = store => next => action => {
       break;
     case TODO_CONSTANTS.CREATE_TODO:
       const todoSuccess = (todo) => store.dispatch(receiveTodo(todo));
-      createTodo(action.todo, todoSuccess)
+      createTodo(action.todo, todoSuccess);
+      break;
+    case TODO_CONSTANTS.UPDATE_TODO:
+      const updateSuccess = (todo) => store.dispatch(receiveTodo(todo));
+      updateTodo(action.todo, updateSuccess);
+      break;
+    case TODO_CONSTANTS.DESTROY_TODO:
+      const destroySuccess = (todo) => store.dispatch(removeTodo(todo));
+      destroyTodo(action.todo, destroySuccess);
+      break;
     default:
       next(action);
   }

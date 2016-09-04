@@ -7,6 +7,8 @@ const TodosReducer = (state = {}, action) => {
       return action.todos
     case TODO_CONSTANTS.RECEIVE_TODO:
       return merge({}, state, {[action.todo.id]: action.todo})
+    case TODO_CONSTANTS.REMOVE_TODO:
+      return delete Object.assign({}, state)[action.todo.id]
     default:
       return state;
   }
