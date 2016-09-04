@@ -8,12 +8,19 @@ export default class TodoList extends React.Component {
   }
 
   render() {
-    const todos = this.props.todos.map((todo, idx) => <TodoListItem key={todo.id} item={todo} />);
+    const { toggleTodo, destroyTodo, todos } = this.props;
+    const todosList = todos.map((todo, idx) =>
+      <TodoListItem key={todo.id}
+                    todo={todo}
+                    toggleTodo={toggleTodo}
+                    destroyTodo={destroyTodo}
+                    />
+    );
 
     return (
       <div>
         <ul>
-          {todos}
+          {todosList}
         </ul>
         <TodoForm createTodo={this.props.createTodo}/>
       </div>

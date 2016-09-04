@@ -13,7 +13,12 @@ class Api::TodosController < ApplicationController
   end
 
   def update
-    render json: "Hi from update"
+    todo = Todo.find_by(todos_params)
+    if todo && todo.update
+      render json: todo, status: 200
+    else
+      render json: todo.errors.full_messages, status: 500
+    end
   end
 
   def destroy
@@ -22,6 +27,6 @@ class Api::TodosController < ApplicationController
 
   private
   def todos_params
-    params.require(:todo).permit(:title, :body, :done)
+    params.require(:todo).permit(:title, :body, :done, :id)
   end
 end

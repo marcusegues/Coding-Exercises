@@ -1,5 +1,5 @@
-import { TODO_CONSTANTS, receiveTodos, receiveTodo } from './../actions/todo_actions';
-import { fetchTodos, createTodo } from './../util/todo_util_api';
+import { TODO_CONSTANTS, receiveTodos, receiveTodo, removeTodo } from './../actions/todo_actions';
+import { fetchTodos, createTodo, updateTodo, destroyTodo } from './../util/todo_util_api';
 
 export const TodoMiddleware = store => next => action => {
   switch(action.type) {

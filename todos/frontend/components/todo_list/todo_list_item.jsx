@@ -6,9 +6,17 @@ export default class TodoListItem extends React.Component {
   }
 
   render() {
-    const { item } = this.props;
+    const { todo, toggleTodo, destroyTodo } = this.props;
      return (
-       <li>{item.title}</li>
+       <li>
+         {todo.title}
+         <button onClick={toggleTodo(todo)}>
+           {todo.done ? "Undo" : "Done"}
+         </button>
+         <button onClick={destroyTodo(todo)}>
+           {"remove"}
+         </button>
+       </li>
      )
   }
 }
