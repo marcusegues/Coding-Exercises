@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { fetchTodos, myFun } from './util/todo_util_api';
 import configureStore from './store/store';
-import { allTodos } from './reducers/selector';
-import { requestTodos, createTodo } from './actions/todo_actions';
 import { Root } from './components/root';
+
+import { fetchSteps, createStep, updateStep, destroyStep } from './util/step_api_util';
 
 const store = configureStore();
 
@@ -14,5 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 window.store = store;
-window.requestTodos = requestTodos;
-window.createTodo = createTodo;
+window.fetchSteps = fetchSteps;
+window.createStep = createStep;
+window.updateStep = updateStep;
+window.destroyStep = destroyStep;

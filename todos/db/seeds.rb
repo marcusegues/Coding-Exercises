@@ -10,3 +10,9 @@ Todo.create([
   {title: "Stretch", body: "Do some stretching to alleviate back pain.", done: false},
   {title: "Wash dishes", body: "Wash those dishes", done: true}
 ]);
+
+Step.create([
+  {title: "Hamstrings", todo_id: 1, done: false},
+  {title: "Quads", todo_id: 1, done: false},
+  {title: "Also the pans", todo_id: 2, done: false},
+]);

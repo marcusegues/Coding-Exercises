@@ -1,7 +1,7 @@
-export const fetchSteps = (success, error) => {
+export const fetchSteps = (todo_id, success, error) => {
   $.ajax({
     method: 'GET',
-    url: 'api/steps',
+    url: `api/todos/${todo_id}/steps`,
     success,
     error
   });
@@ -10,7 +10,7 @@ export const fetchSteps = (success, error) => {
 export const createStep = (step, success, error) => {
   $.ajax({
     method: 'POST',
-    url: 'api/steps',
+    url: `api/todos/${step.todo_id}/steps`,
     data: {step},
     success,
     error
@@ -19,7 +19,7 @@ export const createStep = (step, success, error) => {
 
 export const updateStep = (step, success, error) => {
   $.ajax({
-    method: 'POST',
+    method: 'PUT',
     url: `api/steps/${step.id}`,
     data: {step},
     success,
