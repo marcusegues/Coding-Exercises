@@ -14,6 +14,13 @@ class Api::StepsController < ApplicationController
   end
 
   def destroy
+    step = Step.find(params[:id])
+    if step
+      step.destroy
+      render json: step
+    else
+      render json: "Could not find the step", status: 400
+    end
   end
 
   def update

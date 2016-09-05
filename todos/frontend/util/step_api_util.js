@@ -29,7 +29,7 @@ export const updateStep = (step, success, error) => {
 
 export const destroyStep = (step, success, error) => {
   $.ajax({
-    method: 'POST',
+    method: 'DELETE',
     url: `api/steps/${step.id}`,
     success,
     error
