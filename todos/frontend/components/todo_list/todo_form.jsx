@@ -14,7 +14,7 @@ export default class TodoForm extends React.Component {
     return (e) => {
       e.preventDefault();
       const todo = Object.assign({}, this.state);
-      this.props.createTodo({todo});
+      this.props.createTodo(todo);
       this.setState({title: "", body: ""});
     }
   }

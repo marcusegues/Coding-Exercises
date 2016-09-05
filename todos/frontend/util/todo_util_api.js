@@ -11,7 +11,7 @@ export const createTodo = (todo, success, error) => {
   $.ajax({
     method: 'POST',
     url: "api/todos",
-    data: todo,
+    data: {todo},
     success,
     error
   });
