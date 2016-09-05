@@ -13,7 +13,6 @@ export default class TodoList extends React.Component {
       <TodoListItem key={todo.id}
                     todo={todo}
                     toggleTodo={toggleTodo}
-                    destroyTodo={destroyTodo}
                     />
     );
 
