@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import { Root } from './components/root';
 
-import { fetchSteps, createStep, updateStep, destroyStep } from './util/step_api_util';
+import { stepsById } from './reducers/selector';
+import { fetchSteps } from './util/step_api_util';
 
 const store = configureStore();
 
@@ -14,6 +15,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.store = store;
 window.fetchSteps = fetchSteps;
-window.createStep = createStep;
-window.updateStep = updateStep;
-window.destroyStep = destroyStep;
+window.stepsById = stepsById
