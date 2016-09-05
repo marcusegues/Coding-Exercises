@@ -1,4 +1,5 @@
 import React from 'react';
+import StepListContainer from './../step_list/step_list_container'
 
 export default class TodoDetailView extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ export default class TodoDetailView extends React.Component {
     const { todo } = this.props;
     return (
       <div>
-        {todo.body}
+        <StepListContainer todo_id={todo.id} />
       </div>
     );
   }
