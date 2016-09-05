@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VanillaTodo</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <%= yield %>
+
+
+  <script type="text/javascript">
+    const removeTodo = (li, button) => () => {
+      li.parentNode.removeChild(li);
+      button.parentNode.removeChild(button);
+    }
+
+    const appendTodos = (todos) => {
+      if (!Array.isArray(todos)) {
+        todos = [todos];
+      }
+      const ul = document.getElementById('todos');
+      todos.forEach((todo) => {
+        const li = document.createElement('li');
+        li.textContent = todo.title
+        ul.appendChild(li);
+
+        const button = document.createElement('button');
+        button.textContent = "delete";
+        button.addEventListener("click", (e) => {
+          e.preventDefault();
+          $.ajax({
+            method: 'DELETE',
+            url: `api/todos/${todo.id}`,
+            success: removeTodo(li, button)
+          });
+        });
+        ul.appendChild(button);
+      });
+    };
+
+    // on page load, fetch all todos
+    $(() => {
+      $.ajax({
+        method: 'GET',
+        url: 'api/todos',
+        success: appendTodos
+      });
+    });
+
+    // add event listener for form submit
+    const form = document.getElementById("newTodoForm");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const titleInputEl = document.getElementById('titleInput');
+      const todo = {title: titleInputEl.value, done: false};
+
+      const submitSuccess = (todo) => {
+        titleInputEl.value = "";
+        appendTodos(todo);
+      }
+      $.ajax({
+        method: 'POST',
+        url: 'api/todos',
+        data: {todo},
+        success: submitSuccess
+      });
+    });
+  </script>
+</body>
+</html>
