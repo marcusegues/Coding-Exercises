@@ -5,7 +5,8 @@
     <meta name="Guacamole Recipe" content="Simple, delicious guacamole recipe!">
     <title>Marcus Egues</title>
     <script type="text/javascript" src="./external_js_example.js"></script>
-    <link rel="stylesheet" href="./css_reset.css" type="text/css">
+    <link rel="stylesheet" href="./css_custom_reset.css" type="text/css">
+    <link rel="stylesheet" href="./main.css" type="text/css">
     </script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -34,7 +35,7 @@
       <h2>Ingredients</h2>
       <a name="Ingredients"></a>
 
-      <ul>
+      <ul class="ingredients-list">
         <li>Avocado</li>
         <li>Lime</li>
         <li>Tomato</li>
@@ -63,7 +64,7 @@
 
       <h2>Directions</h2>
       <a name="Directions"></a>
-      <ol>
+      <ol class="directions">
         <li>Take out the pulp of the avocados</li>
         <li>Cut the onions, tomatoes, and coriander in very small pieces</li>
         <li>Put everything in a bowl.</li>
@@ -75,10 +76,9 @@
     <section id="reviews">
       <h3>Submit a Review</h3>
       <form id="review-form" action="/reviews" method="post">
-        <label for="name-input">Reviewer Name</label>
-        <input id="name-input" type="text" name="name" >
+        <label for="name">Reviewer Name</label>
+        <input id="name" type="text" name="name" >
 
-        <br>
         <label for="rating">Rating</label>
         <input type="radio" name="rating" value="1" checked=true>
         <input type="radio" name="rating" value="2">
@@ -86,21 +86,19 @@
         <input type="radio" name="rating" value="4">
         <input type="radio" name="rating" value="5">
 
-        <br><br>
         <label for="expertise"></label>
-        <select name="expertise">
-          <option value="Sometimes Cook" checked=true disabled=true>Sometimes Cook</option>
-          <option value="Cook Everyday" checked=true disabled=true>Cook Everyday</option>
-          <option value="Cooking is a hobby" checked=true disabled=true>Cooking is a hobby</option>
-          <option value="Professional chef" checked=true disabled=true>Professional chef</option>
+        <select id="expertise" name="expertise">
+          <option value="Select Cooking Expertise" disabled="true" selected="true">Select Cooking Experise</option>
+          <option value="Sometimes Cook">Sometimes Cook</option>
+          <option value="Cook Everyday">Cook Everyday</option>
+          <option value="Cooking is a hobby">Cooking is a hobby</option>
+          <option value="Professional chef">Professional chef</option>
         </select>
 
-        <br><br>
         <label for="review">Review</label>
-        <textarea name="review" rows="10" cols="30"></textarea>
+        <textarea id="review" name="review" rows="10" cols="30"></textarea>
 
-        <br>
-        <input type="submit" name="name" value="Submit Review">
+        <input type="submit" value="Submit Review">
       </form>
     </section>
 
